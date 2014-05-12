@@ -149,6 +149,10 @@ var SCgAlphabet = {
         g2.append('svg:line').attr('x1', '-10').attr('x2', '10').attr('y1', '3').attr('y2', '3');
         g2.append('svg:line').attr('x1', '-10').attr('x2', '10').attr('y1', '6').attr('y2', '6');
         this.appendText(g);
+
+        // icon that shows that node contains a frame
+        defs.append('svg:g').attr('id', 'scg.frame-mark')
+            .append('circle').attr('cy', 10).attr('cx', 10).attr('r', 5).attr('stroke-width', 1).attr('fill', 'purple');
         
     },
     

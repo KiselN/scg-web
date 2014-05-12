@@ -81,19 +81,6 @@
 	 				sc_type_node | sc_type_var | sc_type_node_tuple
 				];
 
-//				nodes = [];
-//				for (var i = 0; i < node_types.length; i++)
-//				{
-//					var model_node = new SCg.ModelNode({
-//						position: new SCg.Vector3(900 * Math.random(), 600 * Math.random(), 0), //1000 * Math.random() - 500),
-//						scale: new SCg.Vector2(20, 20),
-//						sc_type: node_types[i],
-//						text: "Object_" + i.toString()
-//					});
-//					editor.scene.appendNode(model_node);
-//					nodes.push(model_node);
-//				}
-				
 
 				var edge_types = [
 					sc_type_edge_common,
@@ -122,53 +109,25 @@
 					sc_type_arc_access | sc_type_var | sc_type_arc_fuz | sc_type_arc_temp
 				];
 				
-//				edges = []
-//				for (var i = 0; i < edge_types.length; i++)
-//				{
-//					var n1 = 0;
-//					var n2 = 0;
-//					while (n1 === n2) {
-//						n1 = Math.floor((Math.random() * nodes.length));
-//						n2 = Math.floor((Math.random() * nodes.length));
-//					}
-//					var model_edge = new SCg.ModelEdge({
-//						source: nodes[n1],
-//						target: nodes[n2],
-//						sc_type: edge_types[i]
-//					});
-//
-//					editor.scene.appendEdge(model_edge);
-//					edges.push(model_edge);
-//				}
-//
-//				var contours = [];
-//                var model_contour = new SCg.ModelContour({
-//                    verticies: [
-//                        new SCg.Vector3(300, 300, 0),
-//                        new SCg.Vector3(700, 300, 0),
-//                        new SCg.Vector3(700, 100, 0),
-//                        new SCg.Vector3(300, 100, 0)
-//                    ]
-//                });
-//                model_contour.addNodesWhichAreInContourPolygon(nodes);
-//                editor.scene.appendContour(model_contour);
-//                contours.push(model_contour);
-				
-//				var buses = [];
-//				var model_bus = new SCg.ModelBus({ 
-//													source: nodes[0] 
-//												});
-//
-//				model_bus.setPoints([
-//								{ x: 700, y: 400, idx: 0 },
-//							{ x: 400, y: 400, idx: 1 }
-//				]);
-//
-//				var pos = new SCg.Vector2(700, 400);
-//				model_bus.setSourceDot(nodes[0].calculateDotPos(pos));
-//				editor.scene.appendBus(model_bus);
-//				buses.push(model_bus);
-//
+
+				// elements = [];
+				// for (var i = 0; i < node_types.length; i++)
+				// {
+				// 	elements.push({
+				// 		el_type: sc_type_node,
+				// 		id: i
+				// 	});
+				// }
+				// var model_node = new SCg.ModelNode({
+				// 		position: new SCg.Vector3(900 * Math.random(), 600 * Math.random(), 0), //1000 * Math.random() - 500),
+				// 		scale: new SCg.Vector2(20, 20),
+				// 		sc_type: sc_type_node | sc_type_const,
+				// 		text: "Object_frame",
+				// 		frame: new SCg.ModelFrame({component: SCgComponent, data: elements})
+				// 	});
+				// 	editor.scene.appendNode(model_node);
+
+
 				editor.render.update();
 				editor.scene.layout();
 			});

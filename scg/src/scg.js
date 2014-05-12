@@ -232,6 +232,16 @@ SCg.Editor.prototype = {
             var result = open_dialog.click();
         });
 
+        cont.find('#scg-tool-toggle-frame').click(function(){
+            if (self.scene.selected_objects[0].isFrameOpened === false)
+                self.scene.selected_objects[0].isFrameOpened = true;
+            else self.scene.selected_objects[0].isFrameOpened = false;
+
+            self.scene.selected_objects[0].need_observer_sync = true;
+            self.scene.selected_objects[0].need_frame_sync = true;
+            self.scene.updateObjectsVisual();
+        });
+
 
         // initial update
         self.onModalChanged();
@@ -247,9 +257,12 @@ SCg.Editor.prototype = {
         if (this.scene.selected_objects.length == 1 && !(this.scene.selected_objects[0] instanceof SCg.ModelContour)) {
             this._enableTool('#scg-tool-change-idtf');
             this._enableTool('#scg-tool-change-type');
+            if (this.scene.selected_objects[0].frame)
+                this._enableTool('#scg-tool-toggle-frame');
         } else {
             this._disableTool('#scg-tool-change-idtf');
             this._disableTool('#scg-tool-change-type');
+            this._disableTool('#scg-tool-toggle-frame');
         }
         
         if (this.scene.selected_objects.length > 0) {

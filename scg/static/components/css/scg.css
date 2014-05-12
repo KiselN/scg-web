@@ -238,12 +238,16 @@ path.SCgBusPath {
     stroke: #FD8E00;
 }
 
+.SCgFrame {
+    border: 3px solid green;
+    stroke: black;
+}
 
 
 
 /* ------------- User interface -------------- */
 .scg-tools-panel {
-    position: absolute; 
+    position: fixed; 
 }
 
 .scg-type-list {

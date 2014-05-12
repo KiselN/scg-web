@@ -36,6 +36,7 @@ SCg.Render.prototype = {
                 .on('keyup', function() {
                     self.onKeyUp(d3.event.keyCode);
                 });
+
         this.initDefs();
                                     
         this.d3_container.append('svg:rect')
@@ -160,11 +161,18 @@ SCg.Render.prototype = {
             .on('mouseup', function(d) {
                 self.scene.onMouseUpObject(d);
             });
-                        
+
         g.append('svg:use')
             .attr('xlink:href', function(d) {
                 return '#' + SCgAlphabet.getDefId(d.sc_type); 
-            })
+            });
+
+        g.append('svg:use')
+            .attr('xlink:href', function(d) {
+                if (d.frame)
+                    return '#scg.frame-mark';
+                else return null;
+            });
 
         g.append('svg:text')
             .attr('class', 'SCgText')
@@ -172,6 +180,8 @@ SCg.Render.prototype = {
             .attr('y', function(d) { return d.scale.y / 1.3; })
             .text(function(d) { return d.text; });
             
+
+
         this.d3_nodes.exit().remove();
             
         // update edges visual
@@ -277,7 +287,22 @@ SCg.Render.prototype = {
                     return d.sc_addr;
                 });
             
-            g.selectAll('text').text(function(d) { return d.text; });;
+            if (d.frame && d.need_frame_sync) {
+                d.need_frame_sync = false;
+                if (d.isFrameOpened) {
+                    g.append('foreignObject')
+                        .attr('width', 400).attr('height', 600)
+                        .attr('transform', 'translate(' + -200 + ',' + -300 + ')')
+                        .attr('class', 'SCgFrame').append('xhtml:div')
+                        .attr('id', 'frame' + this.__data__.id + '_' + this.__data__.sc_addr);
+                    d.frame.container = 'frame' + this.__data__.id + '_' + this.__data__.sc_addr;
+                    d.frame.initComponent();
+                } else {
+                    g.select('.SCgFrame').remove();
+                }
+            }
+
+            g.selectAll('text').text(function(d) { return d.text; });
         });
         
         this.d3_edges.each(function(d) {

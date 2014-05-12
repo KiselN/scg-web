@@ -254,6 +254,9 @@ SCg.ModelNode = function(options) {
 
     SCg.ModelObject.call(this, options);
     
+    this.frame = options.frame;
+    this.isFrameOpened = false;
+    this.need_frame_sync = true;
 };
 
 SCg.ModelNode.prototype = Object.create( SCg.ModelObject.prototype );
@@ -738,3 +741,23 @@ SCg.ModelBus.prototype.destroy = function() {
     if (this.source)
         this.source.removeBus(this);
 };
+
+SCg.ModelFrame = function(options) {
+
+    this.component = options.component;
+    this.container = null;
+    this.data = options.data;
+}
+
+SCg.ModelFrame.prototype.initComponent = function() {
+
+    this.component.factory(this);
+    this.eventDataAppend(this.data);
+
+    var frame = $('#' + this.container).parents('foreignobject')[0];
+    frame.firstChild.style.height = frame.clientHeight + 'px';
+}
+
+SCg.ModelFrame.prototype.updateContent = function() {
+
+}
