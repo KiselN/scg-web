@@ -756,6 +756,8 @@ SCg.ModelFrame.prototype.initComponent = function() {
 
     var frame = $('#' + this.container).parents('foreignobject')[0];
     frame.firstChild.style.height = frame.clientHeight + 'px';
+    frame.firstChild.style.width = frame.clientWidth + 'px';
+    frame.firstChild.style.overflow = 'hidden';
 }
 
 SCg.ModelFrame.prototype.updateContent = function() {
